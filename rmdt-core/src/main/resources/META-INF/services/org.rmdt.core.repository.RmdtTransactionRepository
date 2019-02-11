@@ -1,0 +1,2 @@
+org.rmdt.core.repository.impl.JdbcTransactionRepository
+org.rmdt.core.repository.impl.RedisTransactionRepository

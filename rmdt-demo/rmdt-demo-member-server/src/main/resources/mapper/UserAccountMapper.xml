@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rmdt.demo.mapper.UserAccountMapper" >
+  <resultMap id="BaseResultMap" type="org.rmdt.demo.domain.UserAccount" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_account
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.rmdt.demo.domain.UserAccount" useGeneratedKeys="true" keyProperty="id" >
+    insert into user_account (user_id, balance, create_time, 
+      update_time)
+    values (#{userId,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.rmdt.demo.domain.UserAccount" >
+    update user_account
+    set user_id = #{userId,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_id, balance, create_time, update_time
+    from user_account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_id, balance, create_time, update_time
+    from user_account
+  </select>
+  <select id="getByUserId" resultMap="BaseResultMap">
+    select * from user_account where user_id = #{userId}
+  </select>
+  <update id="updateByUserId" parameterType="org.rmdt.demo.domain.UserAccount" >
+    update user_account
+    set user_id = #{userId,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

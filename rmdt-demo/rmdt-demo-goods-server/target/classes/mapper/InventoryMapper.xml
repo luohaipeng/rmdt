@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rmdt.demo.mapper.InventoryMapper" >
+  <resultMap id="BaseResultMap" type="org.rmdt.demo.domain.Inventory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="total_inventory" property="totalInventory" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from inventory
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.rmdt.demo.domain.Inventory" useGeneratedKeys="true" keyProperty="id" >
+    insert into inventory (product_id, total_inventory, create_time,
+      update_time)
+    values (#{productId,jdbcType=BIGINT}, #{totalInventory,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.rmdt.demo.domain.Inventory" >
+    update inventory
+    set product_id = #{productId,jdbcType=BIGINT},
+      total_inventory = #{totalInventory,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, product_id, total_inventory, create_time, update_time
+    from inventory
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, product_id, total_inventory, create_time, update_time
+    from inventory
+  </select>
+  <select id="getByProductId" resultMap="BaseResultMap">
+    select * from inventory where product_id = #{productId}
+  </select>
+  <update id="updateByProductId" parameterType="org.rmdt.demo.domain.Inventory" >
+    update inventory
+    set product_id = #{productId,jdbcType=BIGINT},
+      total_inventory = #{totalInventory,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where product_id = #{productId,jdbcType=BIGINT}
+  </update>
+</mapper>

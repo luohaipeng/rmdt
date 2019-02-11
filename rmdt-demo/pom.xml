@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>rmdt</artifactId>
+        <groupId>org.rmdt</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>rmdt-demo</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>rmdt-demo-member-server</module>
+        <module>rmdt-demo-member-api</module>
+        <module>rmdt-demo-goods-server</module>
+        <module>rmdt-demo-goods-api</module>
+        <module>rmdt-demo-order-server</module>
+        <module>rmdt-demo-order-api</module>
+        <module>rmdt-demo-client</module>
+    </modules>
+
+    <properties>
+        <mybatis.version>1.2.0</mybatis.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.rmdt</groupId>
+                <artifactId>rmdt-demo-member-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.rmdt</groupId>
+                <artifactId>rmdt-demo-goods-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.rmdt</groupId>
+                <artifactId>rmdt-demo-order-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

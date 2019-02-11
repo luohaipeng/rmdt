@@ -1,0 +1,2 @@
+org.rmdt.core.message.impl.ActivemqTransactionMessage
+org.rmdt.core.message.impl.KafkaTransactionMessage

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rmdt.demo.mapper.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.rmdt.demo.domain.OrderInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.rmdt.demo.domain.OrderInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_info (user_id, product_id, total_amount, 
+      count, status, create_time
+      )
+    values (#{userId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{totalAmount,jdbcType=DECIMAL},
+      #{count,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.rmdt.demo.domain.OrderInfo" >
+    update order_info
+    set user_id = #{userId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      count = #{count,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_id, product_id, total_amount, count, status, create_time
+    from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_id, product_id, total_amount, count, status, create_time
+    from order_info
+  </select>
+</mapper>
