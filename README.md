@@ -28,7 +28,7 @@
 &emsp;&emsp;第四点是：框架本身需要MySQL和ActiveMQ中间件支持，MySQL用于存储事务日志数据，ActiveMQ用于发送事务消息，但是框架内部并没有使用硬编码的方式集成这两个中间件，而是支持动态扩展，换句话说就是：存储事务日志的中间件可以通过配置的方式，切换为任意的存储技术，比如可以切换为Redis、MangoDB等。同理，消息中间件也是可以通过配置切换为常用的RabbitMQ、RocketMQ、Kafka等。具体如何配置看下文。
 ## 模块说明
 &emsp;&emsp;整个项目包含以下几个子模块：rmdt-core，rmdt-common， rmdt-annotation，rmdt-dubbo，rmdt-demo。  
-![项目模块](https://upload-images.jianshu.io/upload_images/10574922-135075f68fe9027f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![项目模块](https://upload-images.jianshu.io/upload_images/10574922-135075f68fe9027f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 我们来看看每个模块的作用：  
 - rmdt-core
 顾名思义，它就是存放核心代码的模块，整个项目所有处理流程和逻辑类都放到这里。
@@ -54,9 +54,9 @@
 把GitHub上的该项目clone下来，导入到IDEA或者Eclipse（推荐使用IDEA），稍等片刻，让开发工具把环境build好。
 - 2、导入测试数据
 项目clone下来后，在rmdt-demo模块中下有3个SQL文件：  
-![](https://upload-images.jianshu.io/upload_images/10574922-9266fe706c909670.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-9266fe706c909670.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 在自己本地MySQL服务创建3个数据库rmdt-demo-goods，rmdt-demo-member，rmdt-demo-order，分别是给商品系统，会员系统和订单系统使用，创建好这3个数据库后，把这3个SQL文件分别导入到以上3个数据库中：
-![](https://upload-images.jianshu.io/upload_images/10574922-b3f16dbdf7f8f45d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-b3f16dbdf7f8f45d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 - 3、启动zookeeper
 由于使用到了zookeeper作为服务发现和注册中心，而配置文件中，连接的zookeeper地址是本地，所以需要在自己本地电脑启动zookeeper服务
 ![](https://upload-images.jianshu.io/upload_images/10574922-40a70c334d332878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -66,13 +66,13 @@ ActiveMQ用于发送事务消息，给框架做事务补偿提供保障。在配
 - 5、运行springboot程序
 分别把demo项目的4个springboot应用启动起来（直接运行main方法即可）：  
 这个4个程序分别是rmdt-demo-client模块下的ClientApp类、rmdt-demo-goods-server模块下的GoodsApp类、rmdt-demo-member-server模块下的MemberApp类、rmdt-demo-order-server模块下的OrderApp类：
-![](https://upload-images.jianshu.io/upload_images/10574922-93df139be59c466b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-93df139be59c466b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 - 6、发送请求
 使用postman测试demo项目模拟的业务方法。postman访问client应用中的/api/orders资源路径，设置的参数为count和price，也就是购买数量和商品价格，点击send按钮，发送请求：
-![](https://upload-images.jianshu.io/upload_images/10574922-2cc2791e8486877f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-2cc2791e8486877f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 - 7、验证正常情况下的结果
 可以看到，请求成功，并且我们查看rmdt-demo-goods，rmdt-demo-member，rmdt-demo-order这3个数据库中的数据是有改变的，order_info表增加了一条订单，user_account表中的balance字段扣了1，inventory表中的total_inventory字段减了1。
-![](https://upload-images.jianshu.io/upload_images/10574922-9ce5a0cfd6c999b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-9ce5a0cfd6c999b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 - 8、验证错误情况下的结果
 到这里，我们就把demo项目启动起来，并且可以正常执行模拟的业务流程了，以上执行的情况是没有出错的情况，那现在我们来演示其中一个远程服务出错的情况：把商品系统服务停掉，然后再执行postman的send请求，此时我们再查看数据，订单生成了，并且用户余额也扣了，而我们模拟商品系统宕机，导致库存扣减失败，这时就出现了数据不一致的情况了：
 ![](https://upload-images.jianshu.io/upload_images/10574922-6d81ce3c002945bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
@@ -84,7 +84,7 @@ ActiveMQ用于发送事务消息，给框架做事务补偿提供保障。在配
 &emsp;&emsp;功能效果刚刚已经看到了，那接下来看看如何使用。RMDT框架使用起来比较简单，我们还是通过内置的demo项目来看看框架的使用。
 - 1、导入框架依赖
 在需要使用RMDT框架的项目导入框架的相关依赖，如Demo项目：rmdt-demo-member-server、rmdt-demo-goods-server、rmdt-demo-order-server这3个模块需要导入rmdt-dubbo依赖。rmdt-demo-member-api、rmdt-demo-goods-api、rmdt-demo-order-api这3个模块需要导入rmdt-annotation依赖。如下图：  
-![](https://upload-images.jianshu.io/upload_images/10574922-d8831b4a137d6e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-d8831b4a137d6e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 由于api项目只用到注解，不需要使用具体功能逻辑，所以api项目只需要导入存放注解的rmdt-annotation依赖即可。这里以rmdt-demo-order-server和rmdt-demo-order-api模块举例，其他模块同理。
 - 2、配置框架扫描的包
 在各个服务提供者系统中的SpringBoot主启动类，添加框架包的扫描范围：  
@@ -96,7 +96,7 @@ ActiveMQ用于发送事务消息，给框架做事务补偿提供保障。在配
 这里以订单系统举例，其他服务系统同理。
 - 4、贴上分布式事务注解
 在需要开启分布式事务的业务方法上，贴上@Rmdt注解，抽象方法和实现方法都需要贴：  
-![](https://upload-images.jianshu.io/upload_images/10574922-eac14c80c4eba117.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-eac14c80c4eba117.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 通过上图可以发现，订单系统的makePayment方法上的@Rmdt注解是没有destination属性的，那是由于destination属性是用于发送事务消息的，订单系统的makePayment是事务发起者，不需要发送事务消息，所以不需要配置destination属性。
 - 5、引用远程服务
 在Dubbo的@Reference注解中，添加一个proxy属性，属性值为"rmdtProxyFactory"：  
@@ -111,10 +111,11 @@ ActiveMQ用于发送事务消息，给框架做事务补偿提供保障。在配
 4、该文件内容为实现了RmdtTransactionRepository接口的类全限定名。  
 5、在初始化配置类**RmdtConfig**中，设置repositoryName的值为实现类中，与**getRepositoryName**方法返回值相同的字符串。并且new出自定义的BaseRepositoryConfig子类配置对象，设置好RmdtTransactionRepository实现类需要的相关属性。
 具体操作如下：  
-![](https://upload-images.jianshu.io/upload_images/10574922-bc8307833bc9bbef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/10574922-bc8307833bc9bbef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 -  MQ消息组件扩展
 MQ消息组件扩展的方式与事务日志存储组件扩展的方式是一样的，这里就不详细说明了，类比学习即可。
 ## 架构说明
+### 总体执行流程
 ![总体执行流程](https://upload-images.jianshu.io/upload_images/10574922-8359450a1ad3988c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
 流程图说明：  
 - 图中左边淡蓝色区域为事务发起者执行流程中涉及到的接口和类，右边淡绿色区域为事务参与者执行流程中涉及到的接口和类，而中轴虚线上的接口和类是双方都需要的。
