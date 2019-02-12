@@ -1,7 +1,8 @@
 ## 概述
 &emsp;&emsp;该框架是基于消息队列的分布式事务解决方案（Reliable Message Distributed Transaction），框架名简称为RMDT。主要是为了解决分布式应用服务化后，事务不能保持一致性的问题。框架详情和架构设计可查看我的个人博客：
 > http://blog.iloveyoubaby.online/space/java?currentPage=1&tag=%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1  
-或者简书账号：LuoHaiPeng
+或者简书账号：LuoHaiPeng  
+码云地址：https://gitee.com/luohiapeng/rmdt
 
 ## 技术选型
 **开发工具**
