@@ -1,13 +1,17 @@
 
 package org.rmdt.common.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author luohaipeng
  * 事务角色
  */
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum TransactionRoleEnum {
 
 
@@ -22,9 +26,6 @@ public enum TransactionRoleEnum {
 
     private String desc;
 
-    TransactionRoleEnum(Integer code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
+
 
 }

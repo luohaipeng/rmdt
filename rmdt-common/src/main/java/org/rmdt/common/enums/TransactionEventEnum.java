@@ -17,24 +17,25 @@
 
 package org.rmdt.common.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author luohaipeng
  */
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum TransactionEventEnum {
 
 
     INSERT(1, "插入事务"),
     UPDATE(2, "更新事务");
 
-    private final Integer code;
+    private Integer code;
 
-    private final String desc;
+    private String desc;
 
-    TransactionEventEnum(Integer code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
+
 }

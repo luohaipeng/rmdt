@@ -1,13 +1,17 @@
 
 package org.rmdt.common.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author luohaipeng
  * 事务状态
  */
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum TransactionStatusEnum {
 
     ROLLBACK(0, "回滚"),
@@ -21,9 +25,6 @@ public enum TransactionStatusEnum {
 
     private String desc;
 
-    TransactionStatusEnum(Integer code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
+
 
 }

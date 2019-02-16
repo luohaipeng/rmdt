@@ -17,12 +17,16 @@
 
 package org.rmdt.common.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author luohaipeng
  */
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum MessageEnum {
 
 
@@ -33,8 +37,5 @@ public enum MessageEnum {
 
     private String desc;
 
-    MessageEnum(Integer code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
+
 }
